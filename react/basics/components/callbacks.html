@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+    <style>
+        button{
+            width: 100px;
+            height:30px;
+            border-radius: 4px;
+            margin:50px;
+        }
+        .on{
+            color:#666;
+            background-color: #ccc;
+        }
+        .off{
+            color:#888;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+      
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+<!-- В процессе работы компонент проходит через ряд этапов жизненного цикла. На каждом из
+этапов вызывается определенная функция, в которой мы можем определить какие-либо действия:
+1. constructor(props): конструктор, в котором происходит начальная инициализация компонента
+2. componentWillMount(): вызывается непосредственно перед рендерингом компонента
+3. render(): рендеринг компонента
+4. componentDidMount(): вызывается после рендеринга компонента. Здесь можно выполнять запросы
+к удаленным ресурсам
+5. componentWillUnmount(): вызывается перед удалением компонента из DOM
+
+Кроме этих основных этапов или событий жизненного цикла, также имеется еще ряд функций,
+которые вызываются при обновлении состояния после рендеринга компонента:
+1. shouldComponentUpdate(nextProps, nextState): вызывается каждый раз при обновлении объекта props или state.
+В качестве параметра передаются новый объект props и state. Эта функция должна возвращать
+true (надо делать обновление) или false (игнорировать обновление). По умолчанию возвращается true.
+Но если функция будет возвращать false, то тем самым мы отключим обновление компонента,
+а последующие функции не будут срабатывать.
+2. componentWillUpdate(nextProps, nextState): вызывается перед обновлением компонента
+(если shouldComponentUpdate возвращает true)
+3. render(): рендеринг компонента (если shouldComponentUpdate возвращает true)
+4. componentDidUpdate(prevProps, prevState): вызывается сразу после обновления компонента
+(если shouldComponentUpdate возвращает true). В качестве параметров передаются 
+старые значения объектов props и state.
+
+И отдельно стоит отметить функцию componentWillReceiveProps(nextProps),
+которая вызывается при обновлении объекта props. Новые значения этого объекта
+передаются в функции в качестве параметра. Как правило, в этой функции устанавливаются
+те свойства компонента, в том числе из this.state, которые зависят от значений из props. -->
+    <script type="text/babel">
+        class ClickButton extends React.Component {
+           constructor(props) {
+               super(props);
+               this.state = {class: "off", label: "Нажми"};
+                 
+               this.press = this.press.bind(this);
+                 
+               console.log("constructor");
+           }
+           componentWillReceiveProps(nextProps) {
+               console.log("componentWillReceiveProps()");
+           }
+           componentWillMount(){
+               console.log("componentWillMount()");
+           }
+           componentDidMount(){
+               console.log("componentDidMount()");
+           }
+           componentWillUnmount(){
+               console.log("componentWillUnmount()");
+           }
+           shouldComponentUpdate(){
+               console.log("shouldComponentUpdate()");
+               return true;
+           }
+           componentWillUpdate(){
+               console.log("componentWillUpdate()");
+           }
+           componentDidUpdate(){
+               console.log("componentDidUpdate()");
+           }
+           press(){
+               var className = (this.state.class==="off")?"on":"off";
+               this.setState({class: className});
+           }
+           render() {
+               console.log("render()");
+               return <button onClick={this.press} className={this.state.class}>{this.state.label}</button>;
+           }
+       }
+       ReactDOM.render(
+           <ClickButton />,
+           document.getElementById("app")
+       )
+    </script>
+</body>
+</html>
