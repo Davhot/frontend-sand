@@ -1,0 +1,8 @@
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  background-color: #ceefe4;
+  color: #de4307;
+}

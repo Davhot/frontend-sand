@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.product {
+  margin: 25px auto;
+  padding: 25px;
+  display: flex;
+  width: 1000px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.product-photo {
+  width: 30%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-information {
+  padding-left: 25px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.product-header {
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.product-price {
+  margin-bottom: 25px;
+}

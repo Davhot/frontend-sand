@@ -1,0 +1,8 @@
+.sidebar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  background-color: #d9d9f3;
+  color: #de4307;
+}
