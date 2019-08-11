@@ -62,6 +62,7 @@ class App extends Component {
 
   // если используется так, то в данной ф-ии есть this и не нужно писать
   // this.dec = this.dec.bind(this)
+  // стрелочная функция
   dec = () => this.setState(({ count }) => ({ count: count - 1 }))
   inc = () => this.setState(({ count }) => ({ count: count + 1 }))
   random = () => this.setState({ number: Math.round(Math.random() * 100) })
